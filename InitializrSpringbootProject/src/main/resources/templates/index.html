@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head('Inicio')"></head>
+<body th:replace="layout :: body(~{::content})">
+<div th:fragment="content">
+    <div class="p-4 bg-white rounded shadow-sm">
+        <h2 class="mb-3">Bienvenido a la Biblioteca</h2>
+        <p>Explora y gestiona libros y categorías. Envía tus sugerencias o quejas desde el formulario.</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <h4>Novedad</h4>
+                <div class="ratio ratio-16x9 mb-3">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/vQ3O8vzsXeg?si=kW_59QSvQd4G0oYF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <p class="text-muted">Video de inspiración sobre lectura.</p>
+            </div>
+            <div class="col-md-4">
+                <h4>Últimos libros</h4>
+                <ul class="list-group" th:if="${#lists.size(libros) > 0}">
+                    <li class="list-group-item" th:each="l : ${libros}">
+                        <strong th:text="${l.titulo}">Título</strong><br/>
+                        <small th:text="${l.autor}">Autor</small>
+                    </li>
+                </ul>
+                <div th:unless="${#lists.size(libros) > 0}" class="alert alert-info mt-2">
+                    Aún no hay libros registrados.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head('Quejas / Sugerencias')"></head>
+<body th:replace="layout :: body(~{::content})">
+<div th:fragment="content" class="bg-white p-4 rounded shadow-sm">
+    <h2>Quejas / Sugerencias</h2>
+    <form th:action="@{/quejas}" th:object="${queja}" method="post" class="row g-3">
+        <div class="col-md-6">
+            <label class="form-label">Nombre</label>
+            <input class="form-control" th:field="*{nombreCliente}"/>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" th:field="*{email}"/>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Teléfono</label>
+            <input class="form-control" th:field="*{telefono}"/>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Tipo</label>
+            <select class="form-select" th:field="*{tipo}">
+                <option th:value="QUEJA">QUEJA</option>
+                <option th:value="SUGERENCIA">SUGERENCIA</option>
+                <option th:value="CONSULTA">CONSULTA</option>
+            </select>
+        </div>
+        <div class="col-12">
+            <label class="form-label">Asunto</label>
+            <input class="form-control" th:field="*{asunto}"/>
+        </div>
+        <div class="col-12">
+            <label class="form-label">Mensaje</label>
+            <textarea class="form-control" rows="5" th:field="*{mensaje}"></textarea>
+            <div class="text-danger" th:errors="*{mensaje}"></div>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-success">Enviar</button>
+            <a class="btn btn-secondary" th:href="@{/}">Volver</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

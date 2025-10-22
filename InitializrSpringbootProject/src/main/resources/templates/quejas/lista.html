@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head('Listado de Quejas')"></head>
+<body th:replace="layout :: body(~{::content})">
+<div th:fragment="content">
+    <h2>Listado de Quejas / Sugerencias</h2>
+    <table class="table table-striped table-hover bg-white shadow-sm">
+        <thead><tr><th>Fecha</th><th>Tipo</th><th>Nombre</th><th>Email</th><th>Asunto</th><th>Mensaje</th></tr></thead>
+        <tbody>
+        <tr th:each="q : ${quejas}">
+            <td th:text="${#temporals.format(q.createdAt, 'yyyy-MM-dd HH:mm')}">Fecha</td>
+            <td th:text="${q.tipo}">Tipo</td>
+            <td th:text="${q.nombreCliente}">Nombre</td>
+            <td th:text="${q.email}">Email</td>
+            <td th:text="${q.asunto}">Asunto</td>
+            <td th:text="${q.mensaje}">Mensaje</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
